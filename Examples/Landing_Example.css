@@ -1,0 +1,60 @@
+head{
+	font-family: 'Baloo Thambi', cursive;
+}
+
+body{
+	font-family: 'Baloo Thambi', cursive;
+	color: white;
+}
+
+.logo{
+	font-size: 40px;
+	position: fixed;
+	top:  0px;
+	left: 5px;
+}
+
+.signin{
+	font-size: 25px;
+	position: fixed;
+	top: 15px;
+	right: 5px;
+}
+
+.login{
+	font-size: 25px;
+	position: fixed;
+	top: 15px;
+	right: 110px;
+}
+
+.biglogo{
+	font-size: 100px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.description{
+	font-size: 15px;
+	position: absolute;
+	top: 57%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.searchbar{
+	position: absolute;
+	top: 63%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 75%;
+}
+
+
+a{
+	text-decoration: none;
+	color: white;
+}
