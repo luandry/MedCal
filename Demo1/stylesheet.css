@@ -48,7 +48,7 @@ body {
 .search-bar input {
 	height: 25px;
 	width: 60%;
-}	
+}
 
 .search-bar button {
 	margin-left: -5px;
@@ -98,4 +98,10 @@ body {
 	font-size: 24px;
 }
 
-
+ul > li {
+    display: inline-block;
+    /* You can also add some margins here to make it look prettier */
+    zoom:1;
+    *display:inline;
+    /* this fix is needed for IE7- */
+}
