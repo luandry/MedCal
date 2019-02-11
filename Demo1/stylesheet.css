@@ -1,0 +1,101 @@
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Baloo Thambi', cursive;
+	background-color: rgb(0, 197, 205);
+	color: white;
+}
+
+.topnav {
+	overflow: hidden;
+}
+
+.topnav a {
+	float: right;
+	font-size: 24px;
+	color: white;
+	display: block;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.topnav .home {
+	float: left;
+	font-size: 40px;
+}
+
+.search-bar {
+	margin-top: 10%;
+	text-align: center;
+}
+
+.search-bar h1 {
+	font-size: 100px;
+	border: none;
+}
+
+.search-bar p {
+	font-size: 16px;
+	margin-top:-30px;
+	margin-bottom:50px;
+}
+
+.search-bar input {
+	height: 25px;
+	width: 60%;
+}	
+
+.search-bar button {
+	margin-left: -5px;
+	padding: 4px 8px 5px 8px;
+	color: white;
+	background-color: rgb(0, 179, 205);
+	font-size: 17px;
+	border: none;
+}
+
+.search-bar a {
+	text-decoration: none;
+	color: white;
+}
+
+.form {
+	margin-left: 35%;
+}
+
+.form input {
+	margin-left: 0;
+}
+
+.form button {
+	font-family: 'Baloo Thambi', cursive;
+	background-color: rgb(0, 179, 205);
+	margin: 10px 140px;
+	border-color: rgb(0, 179, 205);
+	border-style: solid;
+	border-radius: 10px;
+	padding: 10px 20px;
+	color: white;
+	text-align: center;
+	font-size: 16px;
+}
+
+.form button:hover {
+	background-color: rgba(0, 179, 205, 0);
+}
+
+.search-result {
+	margin-top: 3%;
+	text-align: center;
+}
+
+.search-result p {
+	font-size: 24px;
+}
+
+
