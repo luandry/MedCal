@@ -62,11 +62,11 @@ assume this database is at mongodb://localhost/nameDB
 
 
 var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost/nameDB';   // database link
+var url = 'mongodb://localhost/medcal';   // database link
 
 MongoClient.connect(url, function(err, db) {
 
-  var cursor = db.collection('Name').find();
+  var cursor = db.collection('gps').find();
 
   cursor.each(function(err, doc) {
 
@@ -99,9 +99,9 @@ Name : 'Benno' }
 
 MongoClient.connect(url, function(err, db) {
 
-  db.collection('Name').insertOne({
-    id: 4,
-    Name: "Seamus"
+  db.collection('gps').insertOne({
+    id: 45,
+    firstname: "Tim"
   });
   db.close()
 });
@@ -111,11 +111,11 @@ MongoClient.connect(url, function(err, db) {
 
 MongoClient.connect(url, function(err, db) {
 
-  db.collection('Name').updateOne({
-    "Name": "Seamus"
+  db.collection('gps').updateOne({
+    "firstname": "Tim"
   }, {
     $set: {
-      "Name": "Luan"
+      "firstname": "Timmy"
     }
   });
   db.close()
@@ -126,10 +126,10 @@ MongoClient.connect(url, function(err, db) {
 
 MongoClient.connect(url, function(err, db) {
 
-  db.collection('Name').deleteOne(
+  db.collection('gps').deleteOne(
 
       {
-        "EmployeeName": "Luan"
+        "firstname": "Luan"
       }
 
   );
