@@ -1,5 +1,11 @@
-//We want to send data to our Mongo database. In index.html we have a form, and we use it here.
+/*We want to send data to our Mongo database. In index.html we have a form, and we use it here.
+What you need for it to run: installed mongo and node. The required packages should already be
+in the node_modules folder
+To run this enter "node app.js" into your console. Then enter "http://localhost:3000"
+into your browser. Enter some data and submit it. You should now see it in your database,
+in the database "medcal", collection "users".
 
+*/
 var express = require("express");
 var app = express();
 var port = 3000;
@@ -18,7 +24,7 @@ var nameSchema = new mongoose.Schema({
   firstName: String,
   lastName: String
 });
-var User = mongoose.model("OurUsers", nameSchema);
+var User = mongoose.model("Users", nameSchema);
 
 
 
