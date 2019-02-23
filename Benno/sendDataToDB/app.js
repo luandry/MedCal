@@ -9,7 +9,7 @@ in the database "medcal", collection "users".
 var express = require("express");
 var app = express();
 var port = 3000;
-
+var router = express.Router();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,11 +26,53 @@ var nameSchema = new mongoose.Schema({
 });
 var User = mongoose.model("Users", nameSchema);
 
+var docSchema = new mongoose.Schema({
+    firstname: String,
+    lastname: String
+
+});
+var Doctor = mongoose.model("gps", docSchema);
+var searchTerm1 = "Anton";
+var searchTerm2 = "Yamkovoy";  // search terms will be retrieved from html
+
+function nameSearchDoctorOne(first_name,last_name) {
+
+    var query = Doctor.findOne({ 'firstname' : searchTerm1, 'lastname': searchTerm2 });
+    query.select('firstname lastname');
+
+
+    query.exec(function (err, doctor) {
+        if (err) return handleError(err);
+
+        // here you can do whatever you need the query to do eg print somewhere / log something into a textfield / display
+        console.log('doctor firstname: %s lastname : %s', doctor.firstname, doctor.lastname);
+    });
+
+}
+
+function nameSearchDoctorAll(first_name,last_name) {
+
+    var query = Doctor.find({ 'firstname' : searchTerm1, 'lastname': searchTerm2 });
+    query.select('firstname lastname');
+
+
+    query.exec(function (err, doctor) {
+        if (err) return handleError(err);
+
+        // here you can do whatever you need the query to do eg print somewhere / log something into a textfield / display
+        console.log('doctor firstname: %s lastname : %s', doctor.firstname, doctor.lastname);
+    });
+
+}
+
+nameSearchDoctorOne("Anton","Yamkovoy");
+
 
 
 app.get("/", (req, res) => {
  res.sendFile(__dirname + "/index.html");
 });
+
 
 app.post("/addname", (req, res) => {
   var myData = new User(req.body);
@@ -42,6 +84,20 @@ app.post("/addname", (req, res) => {
       res.status(400).send("unable to save to database");
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen(port, () => {
   console.log("Server listening on port " + port);
