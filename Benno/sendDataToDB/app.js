@@ -9,7 +9,7 @@ in the database "medcal", collection "users".
 var express = require("express");
 var app = express();
 var port = 3000;
-var router = express.Router();
+
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,31 +26,11 @@ var nameSchema = new mongoose.Schema({
 });
 var User = mongoose.model("Users", nameSchema);
 
-var docSchema = new mongoose.Schema({
-    firstname: String,
-    lastname: String
-
-});
-
-var searchTerm1 = "Anton";
-var searchTerm2 = "Yamkovoy";  // search terms will be retrieved from html
-
-var query = Doctor.findOne({ 'firstname' : searchTerm1, 'lastname': searchTerm2 });
-
-
-query.select('firstname lastname');
-
-// execute the query at a later time
-query.exec(function (err, doctor) {
-    if (err) return handleError(err);
-    console.log('doctor firstname: %s lastname : %s', doctor.firstname, doctor.lastname);
-});
 
 
 app.get("/", (req, res) => {
  res.sendFile(__dirname + "/index.html");
 });
-
 
 app.post("/addname", (req, res) => {
   var myData = new User(req.body);
@@ -62,20 +42,6 @@ app.post("/addname", (req, res) => {
       res.status(400).send("unable to save to database");
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.listen(port, () => {
   console.log("Server listening on port " + port);
