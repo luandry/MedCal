@@ -32,14 +32,41 @@ var docSchema = new mongoose.Schema({
 
 });
 var Doctor = mongoose.model("gps", docSchema);
+var searchTerm1 = "Anton";
+var searchTerm2 = "Yamkovoy";  // search terms will be retrieved from html
+
+function nameSearchDoctorOne(first_name,last_name) {
+
+    var query = Doctor.findOne({ 'firstname' : searchTerm1, 'lastname': searchTerm2 });
+    query.select('firstname lastname');
 
 
-// find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
-Doctor.find({ 'firstname': 'Anton', 'lastname' : 'Yamkovoy' }, 'firstname lastname', function (err, Doctor) {
-    if (err) return handleError(err);
+    query.exec(function (err, doctor) {
+        if (err) return handleError(err);
 
-    console.log('doctor firstName : %s, doctor lastName: %s', Doctor.firstname, Doctor.lastname);
-});
+        // here you can do whatever you need the query to do eg print somewhere / log something into a textfield / display
+        console.log('doctor firstname: %s lastname : %s', doctor.firstname, doctor.lastname);
+    });
+
+}
+
+function nameSearchDoctorAll(first_name,last_name) {
+
+    var query = Doctor.find({ 'firstname' : searchTerm1, 'lastname': searchTerm2 });
+    query.select('firstname lastname');
+
+
+    query.exec(function (err, doctor) {
+        if (err) return handleError(err);
+
+        // here you can do whatever you need the query to do eg print somewhere / log something into a textfield / display
+        console.log('doctor firstname: %s lastname : %s', doctor.firstname, doctor.lastname);
+    });
+
+}
+
+nameSearchDoctorOne("Anton","Yamkovoy");
+
 
 
 app.get("/", (req, res) => {
