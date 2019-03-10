@@ -2,12 +2,15 @@
   <div class="search">
     <h1 class="title">Search by doctor names</h1>
     <v-text-field
-      v-model="searchRequest"
+      v-model="search"
       label="Search"
     ></v-text-field>
+    <div
+      class="error"
+      v-html="error" />
     <v-btn
-      class="cyan"
-      @click="search"
+      class="blue"
+      @click="searchDoctors"
       dark>
       Search
     </v-btn>
@@ -15,24 +18,28 @@
 </template>
 
 <script>
-import AuthenticationService from '@/services/AuthenticationService'
 export default {
   data () {
     return {
-      searchRequest: '',
+      search: '',
       error: null
     }
   },
   methods: {
-    async search () {
+    async searchDoctors () {
       try {
-        await AuthenticationService.searchRequest({
-          searchRequest: this.searchRequest
-        })
+        const route = {
+          name: 'search'
+        }
+        if (this.search !== '') {
+          route.query = {
+            search: this.search
+          }
+        }
+        this.$router.push(route)
       } catch (error) {
         this.error = error.response.data.error
       }
-      this.$router.push({name: 'search-result'})
     }
   }
 }

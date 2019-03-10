@@ -6,8 +6,5 @@ export default {
   },
   login (credentials) {
     return Api().post('login', credentials)
-  },
-  searchRequest (request) {
-    return Api().get('search', request)
   }
 }

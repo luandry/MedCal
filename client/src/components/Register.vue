@@ -1,54 +1,74 @@
 <template lang="html">
   <v-layout column>
     <v-flex lg5>
-      <div class="white elevation-2">
-        <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
-        </v-toolbar>
-
-        <div class="pl-4 pr-4 pt-2 pb-2">
-          <v-text-field
-            v-model="email"
-            label="Email"
-          ></v-text-field>
-          <v-text-field
-            v-model="password"
-            label="Password"
-          ></v-text-field>
+      <panel title="Register">
+          <form
+            name="sign-up-form"
+            autocomplete="off">
+            <v-text-field
+              v-model="email"
+              label="Email"
+            ></v-text-field>
+            <v-text-field
+              type="password"
+              v-model="password"
+              label="Password"
+            ></v-text-field>
+            <v-text-field
+              v-model="userName"
+              label="User Name"
+            ></v-text-field>
+            <v-text-field
+              v-model="age"
+              label="Age"
+            ></v-text-field>
+            <v-text-field
+              v-model="phoneNumber"
+              label="Phone Number"
+            ></v-text-field>
+          </form>
           <br>
           <div
             class="error"
             v-html="error" />
           <br>
           <v-btn
-            class="cyan"
+            class="blue"
             @click="register"
             dark>
             Register
           </v-btn>
-        </div>
-      </div>
+      </panel>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+
 export default {
   data () {
     return {
       email: '',
       password: '',
+      userName: '',
+      age: null,
+      phoneNumber: '',
       error: null
     }
   },
   methods: {
     async register () {
       try {
-        await AuthenticationService.register({
+        const response = await AuthenticationService.register({
           email: this.email,
-          password: this.password
+          password: this.password,
+          userName: this.userName,
+          age: this.age,
+          phoneNumber: this.phoneNumber
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         this.error = error.response.data.error
       }
@@ -58,7 +78,4 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.error {
-  color: red;
-}
 </style>

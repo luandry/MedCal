@@ -1,39 +1,148 @@
 <template lang="html">
-  <v-toolbar fixed class="cyan" dark>
-    <v-toolbar-title class="mr-4">
-      MedCal
-    </v-toolbar-title>
-    <v-toolbar-items>
-      <v-btn flat dark
+  <nav>
+    <v-toolbar app class="blue" dark>
+      <v-btn
+        flat
+        fab
+        @click="drawer = !drawer">
+        <v-icon>menu</v-icon>
+      </v-btn>
+
+      <v-toolbar-title
         @click="navigateTo({name: 'home'})">
-        Home
-      </v-btn>
-    </v-toolbar-items>
+        <span class="headline">MedCal</span>
+      </v-toolbar-title>
 
-    <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
 
-    <v-toolbar-items>
-      <v-btn flat dark
-        @click="navigateTo({name: 'login'})">
-        Log In
-      </v-btn>
-      <v-btn flat dark
-        @click="navigateTo({name: 'register'})">
-        Sign Up
-      </v-btn>
-    </v-toolbar-items>
-  </v-toolbar>
+      <v-toolbar-items>
+        <v-btn
+          flat
+          dark
+          @click="navigateTo({name: 'search'})">
+          <v-icon left>search</v-icon>
+          Search
+        </v-btn>
+
+        <v-btn
+          v-if="!$store.state.isUserLoggedIn"
+          flat
+          dark
+          @click="googleSignIn">
+          <v-icon left>donut_small</v-icon>
+          Google Login
+        </v-btn>
+
+        <v-btn
+          v-if="!$store.state.isUserLoggedIn"
+          flat
+          dark
+          @click="navigateTo({name: 'register'})">
+          Sign Up
+        </v-btn>
+
+        <v-btn
+          v-if="$store.state.isUserLoggedIn"
+          flat
+          dark
+          @click="googleSignOut">
+          Log Out
+          <v-icon right>logout</v-icon>
+        </v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
+
+    <v-navigation-drawer
+      app
+      v-model="drawer"
+      class="blue">
+      <v-list>
+        <v-list-tile
+          v-for="link in links"
+          :key="link.text"
+          router
+          :to="link.route">
+
+          <v-list-tile-action>
+            <v-icon class="white--text">
+              {{ link.icon }}
+            </v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title class="white--text">
+              {{ link.text}}
+            </v-list-tile-title>
+          </v-list-tile-content>
+
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+  </nav>
 </template>
 
 <script>
+
 export default {
+  data () {
+    return {
+      drawer: false,
+      links: [
+        {
+          icon: 'home',
+          text: 'Home',
+          route: '/'
+        },
+        {
+          icon: 'search',
+          text: 'Search',
+          route: '/search'
+        },
+        {
+          icon: 'event_note',
+          text: 'Calendar'
+        },
+        {
+          icon: 'settings',
+          text: 'Settings'
+        }
+      ]
+    }
+  },
   methods: {
     navigateTo (route) {
       this.$router.push(route)
+    },
+    googleSignOut () {
+      this.$gAuth.signOut()
+        .then(() => {
+          this.$store.dispatch('setToken', null)
+          this.$store.dispatch('setUser', null)
+          this.$router.push({name: 'home'})
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    googleSignIn () {
+      this.$gAuth.signIn()
+        .then(GoogleUser => {
+          console.log('user', GoogleUser)
+          this.$store.dispatch('setToken', GoogleUser.getAuthResponse().id_token)
+          this.$store.dispatch('setUser', GoogleUser.getId())
+          this.$router.push({name: 'home'})
+          this.isSignIn = this.$gAuth.isAuthorized
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
+.v-toolbar__title {
+  cursor: pointer;
+}
 </style>
