@@ -1,32 +1,32 @@
 <template lang="html">
   <panel title="Doctors">
-    <div
-      v-for="doctor in doctors"
-      v-bind:key="doctor.id">
-      <v-layout>
-        <v-flex xs6>
-          <div class="doctor-name">
-            {{doctor.name}}
-          </div>
-          <v-btn
-            class="blue"
-            dark
-            @click="navigateTo({
-              name: 'doctor',
-              params: {
-                doctorId: doctor._id
-              }
-            })">
-            View
-          </v-btn>
-        </v-flex>
+    <v-expansion-panel>
+      <v-expansion-panel-content
+        v-for="doctor in doctors"
+        :key="doctor.id">
 
-        <v-flex xs6>
-          <img class="doctor-image" :src="doctor.photoUrl" />
-        </v-flex>
-      </v-layout>
-      <hr>
-    </div>
+        <template v-slot:header>
+          <div>{{doctor.name}}</div>
+        </template>
+
+        <v-card>
+          <v-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-card-text>
+          <v-layout justify-center>
+            <v-btn
+              class="blue"
+              dark
+              @click="navigateTo({
+                name: 'doctor',
+                params: {
+                  doctorId: doctor._id
+                }
+              })">
+              View
+            </v-btn>
+          </v-layout>
+        </v-card>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
   </panel>
 </template>
 

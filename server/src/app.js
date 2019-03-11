@@ -16,4 +16,3 @@ require('./routes')(app)
 
 app.listen(config.port)
 console.log(`server started on port ${config.port}`)
- 

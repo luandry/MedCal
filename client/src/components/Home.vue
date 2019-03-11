@@ -1,19 +1,31 @@
 <template lang="html">
-  <div class="search">
-    <h1 class="title">Search by doctor names</h1>
-    <v-text-field
-      v-model="search"
-      label="Search"
-    ></v-text-field>
-    <div
-      class="error"
-      v-html="error" />
-    <v-btn
-      class="blue"
-      @click="searchDoctors"
-      dark>
-      Search
-    </v-btn>
+  <div class="front-page">
+    <v-carousel>
+      <v-carousel-item
+        dark
+        v-for="banner in banners"
+        :key="banner.id"
+        :src="banner.imageUrl"
+      ></v-carousel-item>
+    </v-carousel>
+
+    <div class="mt-2">
+      <h1 class="display-3">Search by doctor names</h1>
+      <v-text-field
+        outline
+        v-model="search"
+        label="Search"
+      ></v-text-field>
+      <div
+        class="error"
+        v-html="error" />
+      <v-btn
+        class="blue"
+        @click="searchDoctors"
+        dark>
+        Search
+      </v-btn>
+    </div>
   </div>
 </template>
 
@@ -22,6 +34,20 @@ export default {
   data () {
     return {
       search: '',
+      banners: [
+        {
+          id: 1,
+          imageUrl: 'http://www.apexcartage.com/wp-content/uploads/2014/05/placeholder-blue.png'
+        },
+        {
+          id: 2,
+          imageUrl: 'https://www.syncron.com/wp-content/uploads/2017/03/img-placeholder.png'
+        },
+        {
+          id: 3,
+          imageUrl: 'https://www.hyduke.com/wp-content/uploads/2017/10/placeholder-red.png'
+        }
+      ],
       error: null
     }
   },
@@ -46,10 +72,4 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.search {
-  margin-top: 150px;
-}
-.title {
-  color: gray;
-}
 </style>
