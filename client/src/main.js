@@ -19,6 +19,9 @@ const gauthOption = {
 }
 Vue.use(GAuth, gauthOption)
 
+var AddToCalendar = require('vue-add-to-calendar')
+Vue.use(AddToCalendar)
+
 Vue.use(Vuetify, {
   iconfont: 'mdi' // 'md' || 'mdi' || 'fa' || 'fa4'
 })
