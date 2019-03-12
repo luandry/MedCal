@@ -56,11 +56,11 @@
     <v-layout>
       <v-flex>
         <add-to-calendar
-          title="VueConf"
-          location="WROCŁAW, POLAND"
-          :start="new Date()"
-          :end="new Date((new Date).setDate((new Date).getDate() + 1))"
-          details="The first Official Vue.js Conference in the world!"
+          title="Appointment with Dr. Doe"
+          location="George's Street Upper, Dún Laoghaire, Dublin, Irland"
+          :start="new Date((new Date).setDate((new Date).getDate() + 3))"
+          :end="new Date((new Date).setDate((new Date).getDate() + 3))"
+          details="Looking at progress with knee injury"
           inline-template>
 
           <div>
