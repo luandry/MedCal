@@ -58,13 +58,8 @@
         <add-to-calendar
           title="Appointment with Dr. Doe"
           location="George's Street Upper, Dún Laoghaire, Dublin, Irland"
-<<<<<<< HEAD
           :start="new Date((new Date).setDate((new Date).getDate() + 3))"
           :end="new Date((new Date).setDate((new Date).getDate() + 3))"
-=======
-          :start="new Date("March 15, 2019 14:15:00")"
-          :end="new Date("March 15, 2019 15:00:00")"
->>>>>>> 911e22761752c6a630dae9432ea5d88dc77d5155
           details="Looking at progress with knee injury"
           inline-template>
 
