@@ -7,6 +7,7 @@ import Vuetify from 'vuetify'
 import { sync } from 'vuex-router-sync'
 import 'vuetify/dist/vuetify.min.css'
 import GAuth from 'vue-google-oauth2'
+import AddToCalendar from 'vue-add-to-calendar'
 import store from '@/store/store'
 import Panel from '@/components/globals/Panel'
 
@@ -19,7 +20,6 @@ const gauthOption = {
 }
 Vue.use(GAuth, gauthOption)
 
-var AddToCalendar = require('vue-add-to-calendar')
 Vue.use(AddToCalendar)
 
 Vue.use(Vuetify, {

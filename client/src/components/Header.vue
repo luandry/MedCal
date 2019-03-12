@@ -37,6 +37,14 @@
           v-if="!$store.state.isUserLoggedIn"
           flat
           dark
+          @click="navigateTo({name: 'login'})">
+          Login
+        </v-btn>
+
+        <v-btn
+          v-if="!$store.state.isUserLoggedIn"
+          flat
+          dark
           @click="navigateTo({name: 'register'})">
           Sign Up
         </v-btn>
@@ -56,6 +64,26 @@
       app
       v-model="drawer"
       class="blue">
+
+      <v-toolbar
+        v-if="$store.state.isUserLoggedIn"
+        flat
+        class="transparent">
+        <v-list class="pa-0">
+          <v-list-tile avatar>
+            <v-list-tile-avatar>
+              <img :src="google.imageUrl">
+            </v-list-tile-avatar>
+
+            <v-list-tile-content>
+              <v-list-tile-title class="white--text">
+                {{ google.name }}
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-toolbar>
+
       <v-list>
         <v-list-tile
           v-for="link in links"
@@ -71,7 +99,7 @@
 
           <v-list-tile-content>
             <v-list-tile-title class="white--text">
-              {{ link.text}}
+              {{ link.text }}
             </v-list-tile-title>
           </v-list-tile-content>
 
@@ -87,6 +115,11 @@ export default {
   data () {
     return {
       drawer: false,
+      google: {
+        name: null,
+        imageUrl: null,
+        email: null
+      },
       links: [
         {
           icon: 'home',
@@ -130,6 +163,12 @@ export default {
           console.log('user', GoogleUser)
           this.$store.dispatch('setToken', GoogleUser.getAuthResponse().id_token)
           this.$store.dispatch('setUser', GoogleUser.getId())
+
+          const basicProfile = GoogleUser.getBasicProfile()
+          this.google.name = basicProfile.getName()
+          this.google.imageUrl = basicProfile.getImageUrl()
+          this.google.email = basicProfile.getEmail()
+
           this.$router.push({name: 'home'})
           this.isSignIn = this.$gAuth.isAuthorized
         })

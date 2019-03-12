@@ -1,6 +1,6 @@
 <template lang="html">
-  <v-layout row justify-center>
-    <v-flex xs10>
+  <v-layout>
+    <v-flex>
       <search-panel />
       <search-results-panel class="mt-2" />
     </v-flex>

@@ -1,13 +1,15 @@
 <template lang="html">
   <v-layout>
-    <v-flex xs6>
+    <v-flex>
       <doctor-info :doctor="doctor" />
+      <make-booking class="mt-2" />
     </v-flex>
   </v-layout>
 </template>
 
 <script>
 import DoctorInfo from '@/components/ViewDoctor/DoctorInfo'
+import MakeBooking from '@/components/ViewDoctor/MakeBooking'
 import SearchService from '@/services/SearchService'
 
 export default {
@@ -21,7 +23,8 @@ export default {
     this.doctor = (await SearchService.show(doctorId)).data
   },
   components: {
-    DoctorInfo
+    DoctorInfo,
+    MakeBooking
   }
 }
 </script>
