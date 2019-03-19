@@ -6,9 +6,12 @@ module.exports = {
       const search = req.query.search
       if (search) {
         await Doctor
-        .find({
-          name: { '$regex' : search, '$options' : 'i' }
-        })
+        .find().or(
+          [
+            {name: { '$regex' : search, '$options' : 'i' }},
+            {address: { '$regex' : search, '$options' : 'i' }}
+          ]
+        )
         .exec(function (err, doctors) {
           res.send(doctors)
         })
