@@ -11,6 +11,11 @@ const Doctor = new mongoose.Schema({
     trim: true,
     default: ''
   },
+  bio: {
+    type: String,
+    trim: true,
+    default: ''
+  },
   doctortype: {
     type: String,
     trim: true,
