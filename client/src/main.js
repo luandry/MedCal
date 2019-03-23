@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import * as VueGoogleMaps from 'vue2-google-maps'
 import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
@@ -10,6 +11,14 @@ import GAuth from 'vue-google-oauth2'
 import AddToCalendar from 'vue-add-to-calendar'
 import store from '@/store/store'
 import Panel from '@/components/globals/Panel'
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyAkl9ECcFQJ-2FpgDAuekY65nHtYFnNST8', // api key token
+    libraries: 'places',
+  },
+})
+
 
 Vue.config.productionTip = false
 

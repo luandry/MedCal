@@ -7,6 +7,22 @@
         </div>
       </v-flex>
 
+      <GmapMap
+    :center="{lat:50, lng:10}"
+    :zoom="7"
+    map-type-id="terrain"
+    style="width: 500px; height: 300px">
+    <GmapMarker
+      :key="index"
+      v-for="(m, index) in markers"
+      :position="m.position"
+      :clickable="true"
+      :draggable="true"
+      @click="center=m.position"
+    />
+  </GmapMap>
+
+
       <v-flex>
         <img class="doctor-image" :src="doctor.photoUrl" />
       </v-flex>
@@ -25,6 +41,13 @@ export default {
     }
   }
 }
+
+
+
+
+
+
+
 </script>
 
 <style lang="css" scoped>

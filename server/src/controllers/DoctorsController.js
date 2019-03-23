@@ -10,6 +10,8 @@ module.exports = {
           [
             {name: { '$regex' : search, '$options' : 'i' }},
             {address: { '$regex' : search, '$options' : 'i' }}
+        
+
           ]
         )
         .exec(function (err, doctors) {

@@ -26,17 +26,17 @@ const Doctor = new mongoose.Schema({
     trim: true,
     default: ''
   },
-  cord: {
-    lang: {
+  lang: {
       type: String,
       trim: true,
       default: 0
-    },
-    lat: {
+  },
+
+  lat: {
       type: String,
       trim: true,
       default: 0
-    }
+    
   },
   phone: {
     type: String,
