@@ -1,6 +1,30 @@
 <template lang="html">
   <panel title="Doctors">
-    <v-expansion-panel>
+    <v-spacer slot="action"></v-spacer>
+
+    <div slot="action">
+      <v-btn
+        dark
+        depressed
+        v-if="!expanded"
+        class="blue lighten-1"
+        @click="all">
+        expand all
+      </v-btn>
+
+      <v-btn
+        dark
+        depressed
+        v-if="expanded"
+        class="blue lighten-1"
+        @click="none">
+        retract all
+      </v-btn>
+    </div>
+
+    <v-expansion-panel
+      expand
+      v-model="panel">
       <v-expansion-panel-content
         v-for="doctor in doctors"
         :key="doctor._id"
@@ -26,6 +50,30 @@
         </v-card>
       </v-expansion-panel-content>
     </v-expansion-panel>
+
+    <v-layout row justify-center>
+      <v-flex md2>
+        <v-btn
+          dark
+          class="blue"
+          @click="prevPage">
+          <v-icon>chevron_left</v-icon>
+        </v-btn>
+      </v-flex >
+      <v-flex md1>
+        <v-btn disabled>
+          <span class="page-number">{{ pageIndex+1 }}</span>
+        </v-btn>
+      </v-flex>
+      <v-flex md2>
+        <v-btn
+          dark
+          class="blue"
+          @click="nextPage">
+          <v-icon>chevron_right</v-icon>
+        </v-btn>
+      </v-flex>
+    </v-layout>
   </panel>
 </template>
 
@@ -35,19 +83,61 @@ import SearchService from '@/services/SearchService'
 export default {
   data () {
     return {
+      panel: [],
+      expanded: false,
+      pageIndex: 0,
+      maxPage: 0,
+      searchResults: null,
       doctors: null
     }
   },
   methods: {
     navigateTo (route) {
       this.$router.push(route)
+    },
+    all () {
+      this.panel = []
+      for (let i = 0; i < this.doctors.length; i++) {
+        this.panel[i] = true
+      }
+      this.expanded = true
+    },
+    none () {
+      this.panel = []
+      this.expanded = false
+    },
+    prevPage () {
+      if (this.pageIndex > 0) {
+        this.pageIndex--
+      }
+    },
+    nextPage () {
+      if (this.pageIndex < this.maxPage) {
+        this.pageIndex++
+      }
     }
   },
   watch: {
     '$route.query.search': {
       immediate: true,
       async handler (value) {
-        this.doctors = (await SearchService.index(value)).data
+        this.searchResults = (await SearchService.index(value)).data
+        this.doctors = []
+        for (let i = 0; i < 10; i++) {
+          if (this.searchResults[i] != null) {
+            this.doctors[i] = this.searchResults[i]
+          }
+        }
+        this.maxPage = Math.ceil(this.searchResults.length / 10) - 1
+      }
+    },
+    pageIndex: function (val) {
+      this.doctors = []
+      let resultsIndex = this.pageIndex * 10
+      for (let i = resultsIndex; i < resultsIndex + 10; i++) {
+        if (this.searchResults[i] != null) {
+          this.doctors[i - resultsIndex] = this.searchResults[i]
+        }
       }
     }
   }
@@ -62,5 +152,11 @@ export default {
 .doctor-image {
   width: 70%;
   margin: 0 auto
+}
+
+.page-number {
+  color: gray;
+  font-weight: bold;
+  font-size: 1.6em
 }
 </style>

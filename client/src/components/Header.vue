@@ -83,7 +83,7 @@
         </v-list>
       </v-toolbar>
 
-      <v-list>
+      <v-list class="blue lighten-1">
         <v-list-tile
           v-for="link in links"
           :key="link.text"

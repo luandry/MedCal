@@ -2,7 +2,7 @@
   <v-layout>
     <v-flex>
       <search-panel />
-      <search-results-panel class="mt-2" />
+      <search-results-panel class="mt-3" />
     </v-flex>
   </v-layout>
 </template>
