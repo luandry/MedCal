@@ -1,7 +1,6 @@
 <template lang="html">
   <panel title="Doctors">
     <v-expansion-panel>
-
       <v-expansion-panel-content
         v-for="doctor in doctors"
         :key="doctor._id"
