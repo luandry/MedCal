@@ -1,6 +1,9 @@
 <template lang="html">
   <div class="front-page">
-    <v-carousel>
+    <v-carousel
+      prev-icon="chevron_left"
+      next-icon="chevron_right"
+      delimiter-icon="lens">
       <v-carousel-item
         dark
         v-for="banner in banners"
@@ -41,10 +44,14 @@ export default {
         },
         {
           id: 2,
-          imageUrl: 'https://www.syncron.com/wp-content/uploads/2017/03/img-placeholder.png'
+          imageUrl: 'https://www.hyduke.com/wp-content/uploads/2017/10/placeholder-red.png'
         },
         {
           id: 3,
+          imageUrl: 'http://www.apexcartage.com/wp-content/uploads/2014/05/placeholder-blue.png'
+        },
+        {
+          id: 4,
           imageUrl: 'https://www.hyduke.com/wp-content/uploads/2017/10/placeholder-red.png'
         }
       ],

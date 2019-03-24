@@ -1,12 +1,10 @@
 <template lang="html">
   <nav>
     <v-toolbar app class="blue" dark>
-      <v-btn
-        flat
-        fab
+      <v-toolbar-side-icon
         @click="drawer = !drawer">
         <v-icon>menu</v-icon>
-      </v-btn>
+      </v-toolbar-side-icon>
 
       <v-toolbar-title
         @click="navigateTo({name: 'home'})">
@@ -62,6 +60,7 @@
 
     <v-navigation-drawer
       app
+      temporary
       v-model="drawer"
       class="blue">
 
@@ -102,7 +101,6 @@
               {{ link.text }}
             </v-list-tile-title>
           </v-list-tile-content>
-
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>

@@ -1,62 +1,113 @@
 <template lang="html">
   <panel title="Doctor Info">
-    <v-layout row justify-center>
-      <v-flex>
-        <div class="doctor-name">
-          {{doctor.name}}
-        </div>
-      </v-flex>
+    <v-container fluid grid-list-md>
+      <v-layout row wrap>
+        <v-flex d-flex md6>
+          <v-card flat>
+            <v-card-title primary class="headline">{{ doctor.name }}</v-card-title>
 
-      <GmapMap
-    :center="{lat:50, lng:10}"
-    :zoom="7"
-    map-type-id="terrain"
-    style="width: 500px; height: 300px">
-    <GmapMarker
-      :key="index"
-      v-for="(m, index) in markers"
-      :position="m.position"
-      :clickable="true"
-      :draggable="true"
-      @click="center=m.position"
-    />
-  </GmapMap>
+            <v-text-field
+              readonly
+              outline
+              v-model="doctor.bio"
+              v-if="!isEmpty(doctor.bio)"
+              label="Doctor Bio">
+            </v-text-field>
 
+            <v-text-field
+              readonly
+              outline
+              v-model="doctor.address"
+              v-if="!isEmpty(doctor.address)"
+              label="Address">
+            </v-text-field>
 
-      <v-flex>
-        <img class="doctor-image" :src="doctor.photoUrl" />
-      </v-flex>
-    </v-layout>
+            <v-text-field
+              readonly
+              outline
+              v-model="doctor.phone"
+              v-if="!isEmpty(doctor.phone)"
+              label="Phone Number">
+            </v-text-field>
+
+            <v-text-field
+              readonly
+              outline
+              v-model="doctor.mail"
+              v-if="!isEmpty(doctor.mail)"
+              label="Email">
+            </v-text-field>
+          </v-card>
+        </v-flex>
+
+        <v-flex d-flex md6>
+          <v-layout row wrap>
+            <v-flex d-flex>
+              <v-card flat>
+                <img class="doctor-image" :src="doctorImage" />
+              </v-card>
+            </v-flex>
+
+            <v-flex d-flex md10 offset-md1>
+              <GmapMap
+                :center="{lat:50, lng:10}"
+                :zoom="7"
+                map-type-id="terrain"
+                style="width: 500px; height: 400px">
+                <GmapMarker
+                  :key="index"
+                  v-for="(m, index) in markers"
+                  :position="m.position"
+                  :clickable="true"
+                  :draggable="true"
+                  @click="center=m.position"
+                />
+              </GmapMap>
+            </v-flex>
+          </v-layout>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </panel>
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      doctorImage: null
+    }
+  },
   props: [
     'doctor'
   ],
   methods: {
     navigateTo (route) {
       this.$router.push(route)
+    },
+    isEmpty (data) {
+      if (data == null || data === '') {
+        return true
+      } return false
+    }
+  },
+  watch: {
+    doctor: function (val) {
+      if (this.doctor.photoUrl === '' || this.doctor.photoUrl == null) {
+        this.doctorImage = 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'
+      } else this.doctorImage = this.doctor.photoUrl
     }
   }
 }
-
-
-
-
-
-
-
 </script>
 
 <style lang="css" scoped>
-.doctor-name {
-  font-size: 30px
+.label {
+  font-weight: bold
 }
 
 .doctor-image {
   width: 70%;
-  margin: 0 auto
+  margin: 10px auto
 }
 </style>

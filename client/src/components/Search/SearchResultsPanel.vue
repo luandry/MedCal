@@ -1,13 +1,13 @@
 <template lang="html">
   <panel title="Doctors">
     <v-expansion-panel>
+
       <v-expansion-panel-content
         v-for="doctor in doctors"
-        :key="doctor.id">
+        :key="doctor._id"
+        expand-icon="expand_more">
 
-        <template v-slot:header>
-          <div>{{doctor.name}}</div>
-        </template>
+        <div slot="header">{{doctor.name}}</div>
 
         <v-card>
           <v-card-text>{{doctor.bio}}</v-card-text>

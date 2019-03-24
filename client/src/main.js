@@ -15,10 +15,9 @@ import Panel from '@/components/globals/Panel'
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyAkl9ECcFQJ-2FpgDAuekY65nHtYFnNST8', // api key token
-    libraries: 'places',
-  },
+    libraries: 'places'
+  }
 })
-
 
 Vue.config.productionTip = false
 
