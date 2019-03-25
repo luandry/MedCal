@@ -12,7 +12,7 @@
       ></v-carousel-item>
     </v-carousel>
 
-    <div class="mt-2">
+    <div class="mt-2 mb-5">
       <h1 class="display-3">Search by doctor names</h1>
       <v-text-field
         outline

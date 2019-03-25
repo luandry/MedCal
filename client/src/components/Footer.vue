@@ -1,11 +1,12 @@
 <template lang="html">
   <v-footer
+    absolute
     height="auto"
     color="primary lighten-1">
     <v-layout>
       <v-flex
         class="blue lighten-1"
-        py-4
+        py-3
         text-xs-center
         white--text
         xs12>

@@ -1,5 +1,7 @@
 <template lang="html">
-  <panel title="Doctors">
+  <panel
+    title="Doctors"
+    class="mb-5">
     <v-spacer slot="action"></v-spacer>
 
     <div slot="action">
@@ -55,20 +57,20 @@
       <v-flex md2>
         <v-btn
           dark
-          class="blue"
+          class="blue lighten-q"
           @click="prevPage">
           <v-icon>chevron_left</v-icon>
         </v-btn>
       </v-flex >
       <v-flex md1>
         <v-btn disabled>
-          <span class="page-number">{{ pageIndex+1 }}</span>
+          <span class="page-number">{{ pageIndex+1 }}/{{ maxPage+1 }}</span>
         </v-btn>
       </v-flex>
       <v-flex md2>
         <v-btn
           dark
-          class="blue"
+          class="blue lighten-1"
           @click="nextPage">
           <v-icon>chevron_right</v-icon>
         </v-btn>
@@ -139,6 +141,7 @@ export default {
           this.doctors[i - resultsIndex] = this.searchResults[i]
         }
       }
+      this.none()
     }
   }
 }
