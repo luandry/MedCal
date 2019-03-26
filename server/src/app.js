@@ -8,6 +8,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 mongoose.connect('mongodb+srv://Anton:medcal@medcal-pwjx5.mongodb.net/medcal', {useNewUrlParser: true});
 const app = express()
+app.use(express.static("../../.." + "/dist/"))
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
