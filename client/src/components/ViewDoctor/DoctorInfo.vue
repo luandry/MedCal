@@ -50,17 +50,15 @@
 
             <v-flex d-flex md10 offset-md1>
               <GmapMap
-                :center="{lat:50, lng:10}"
-                :zoom="7"
+                :center="{lat:parseFloat(doctor.lat), lng:parseFloat(doctor.long)}"
+                :zoom="12"
                 map-type-id="terrain"
                 style="width: 500px; height: 400px">
                 <GmapMarker
-                  :key="index"
-                  v-for="(m, index) in markers"
-                  :position="m.position"
+                  :position="google && new google.maps.LatLng(doctor.lat, doctor.long)"
                   :clickable="true"
                   :draggable="true"
-                  @click="center=m.position"
+                  @click="center=google && new google.maps.LatLng(doctor.lat, doctor.long)"
                 />
               </GmapMap>
             </v-flex>
@@ -72,6 +70,8 @@
 </template>
 
 <script>
+import {gmapApi} from 'vue2-google-maps'
+
 export default {
   data () {
     return {
@@ -97,6 +97,9 @@ export default {
         this.doctorImage = 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'
       } else this.doctorImage = this.doctor.photoUrl
     }
+  },
+  computed: {
+    google: gmapApi
   }
 }
 </script>
