@@ -26,7 +26,7 @@ const Doctor = new mongoose.Schema({
     trim: true,
     default: ''
   },
-  lang: {
+  long: {
       type: String,
       trim: true,
       default: 0
@@ -36,7 +36,7 @@ const Doctor = new mongoose.Schema({
       type: String,
       trim: true,
       default: 0
-    
+
   },
   phone: {
     type: String,
