@@ -2,7 +2,7 @@
 
 An easy way to make an appointment with your doctor
 
-## [Demo:](http://sweng-30-medcal.herokuapp.com)
+## [Demo](http://sweng-30-medcal.herokuapp.com)
 &nbsp;
 
 ## Usage
