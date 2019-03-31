@@ -23,7 +23,7 @@ Vue.config.productionTip = false
 
 const gauthOption = {
   // local host key : '910540364267-1l5e831tupoal1biunv53lf0ch6cr5np.apps.googleusercontent.com'
-  clientId: '910540364267-1nhh4bfnqspdgtkd4cp2eepmf53pm9g1.apps.googleusercontent.com',
+  clientId: '1026753557380-lo5qjjas8jlu850m1gd4h4a0qa31htq2.apps.googleusercontent.com',
   scope: 'profile email',
   prompt: 'select_account'
 }
