@@ -22,7 +22,8 @@ Vue.use(VueGoogleMaps, {
 Vue.config.productionTip = false
 
 const gauthOption = {
-  clientId: '910540364267-toncjo4dt8btp90r7ih3pt4judft6aee.apps.googleusercontent.com' || '910540364267-1l5e831tupoal1biunv53lf0ch6cr5np.apps.googleusercontent.com',
+  // local host key : '910540364267-1l5e831tupoal1biunv53lf0ch6cr5np.apps.googleusercontent.com'
+  clientId: '910540364267-toncjo4dt8btp90r7ih3pt4judft6aee.apps.googleusercontent.com',
   scope: 'profile email',
   prompt: 'select_account'
 }

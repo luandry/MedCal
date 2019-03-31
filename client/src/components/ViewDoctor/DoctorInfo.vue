@@ -39,6 +39,22 @@
             <v-text-field
               readonly
               outline
+              v-model="doctor.address"
+              v-if="!isEmpty(doctor.address)"
+              label="Address">
+            </v-text-field>
+
+            <v-text-field
+              readonly
+              outline
+              v-model="doctor.address"
+              v-if="!isEmpty(doctor.address)"
+              label="Address">
+            </v-text-field>
+
+            <v-text-field
+              readonly
+              outline
               v-model="doctor.phone"
               v-if="!isEmpty(doctor.phone)"
               label="Phone Number">
