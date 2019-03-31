@@ -17,6 +17,20 @@
             <v-text-field
               readonly
               outline
+              v-model="doctor.lat"
+              label="Doctor Bio">
+            </v-text-field>
+
+            <v-text-field
+              readonly
+              outline
+              v-model="doctor.long"
+              label="Doctor Bio">
+            </v-text-field>
+
+            <v-text-field
+              readonly
+              outline
               v-model="doctor.address"
               v-if="!isEmpty(doctor.address)"
               label="Address">
