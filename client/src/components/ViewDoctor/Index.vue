@@ -2,7 +2,7 @@
   <v-layout>
     <v-flex>
       <doctor-info :doctor="doctor" />
-      <make-booking class="mt-2 mb-5" />
+      <make-booking class="mt-2 mb-5" :doctor="doctor" />
     </v-flex>
   </v-layout>
 </template>
